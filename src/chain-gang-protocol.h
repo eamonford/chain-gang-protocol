@@ -6,12 +6,12 @@
   #include "Particle.h"
 #endif
 
-#include "Message.h"
+#include "Datagram.h"
 #include "Constants.h"
 
 class CGPInterface {
     public:
-        virtual bool sendMessage(Message* msg, int identity) = 0;
+        virtual bool sendDatagram(Datagram* msg, int identity) = 0;
         virtual bool sendSynAndWaitForAck(Stream* stream) = 0;
         virtual Stream* waitForSynAndSendAck() = 0;
 
