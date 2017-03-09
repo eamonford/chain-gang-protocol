@@ -1,5 +1,3 @@
-#pragma once
-
 #ifdef ARDUINO
     #include <Arduino.h>
 #else
@@ -12,7 +10,7 @@
 class CGPInterface {
     public:
         virtual bool sendDatagram(Datagram* msg, int identity) = 0;
-        virtual bool sendSynAndWaitForAck(Stream* stream) = 0;
+        virtual bool sendSynAndWaitForAck(Stream* stream);
         virtual Stream* waitForSynAndSendAck() = 0;
 
         int* readBytes(Stream* comm, int numBytesToRead);
