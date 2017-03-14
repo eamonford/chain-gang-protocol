@@ -4,6 +4,7 @@ bool CGPInterface::sendSynAndWaitForAck(Stream* stream) {
   int tryCount = 0;
   do {
     stream->write(SYN);
+    delay(10);
     if (tryCount++ == MAX_SYNS) {
       return false;
     }
