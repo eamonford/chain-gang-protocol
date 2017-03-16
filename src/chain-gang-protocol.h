@@ -11,7 +11,7 @@ class CGPInterface {
     public:
         virtual bool sendDatagram(Datagram* msg, int identity) = 0;
         bool sendSynAndWaitForAck(Stream* stream);
-        virtual Stream* waitForSynAndSendAck() = 0;
-
+        Stream* waitForSynAndSendAck(Stream* stream);
+        Stream* waitForSynAndSendAck(int nStreams, Stream** streams);
         int* readBytes(Stream* comm, int numBytesToRead);
 };
