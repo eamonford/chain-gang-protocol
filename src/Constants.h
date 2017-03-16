@@ -1,6 +1,6 @@
 // LIMITS
 #define MAX_MSG_LEN 3
-#define MAX_SYNS 1000
+#define MAX_SYNS 100
 
 // COMMAND CODES
 #define SET_ID 0x05
