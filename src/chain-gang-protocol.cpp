@@ -37,6 +37,9 @@ Stream* CGPInterface::waitForSynAndSendAck(int nStreams, Stream** streams) {
   } while (currStream->available() == 0 || currStream->read() != SYN);
   currStream->write(ACK);
   // Eat up any extra SYNs that got sent during the delay
-  while (currStream->available() > 0 && currStream->peek() == SYN) currStream->read();
+  while (currStream->available() > 0 && currStream->peek() == SYN) {
+    currStream->read();
+    delay(20);
+  }
   return currStream;
 }
