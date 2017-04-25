@@ -1,10 +1,13 @@
 #include "Datagram.h"
 #include "Constants.h"
 
-Datagram::Datagram(int destination, int command, int arg) {
-  this->destination = destination;
-  this->command = command;
-  this->arg = arg;
+Datagram::Datagram(int newDestination, int newCommand, int newArg) : Datagram(newDestination, newCommand, newArg, random(1, 254)) {}
+
+Datagram::Datagram(int newDestination, int newCommand, int newArg, int newId) {
+  this->destination = newDestination;
+  this->command = newCommand;
+  this->arg = newArg;
+  this->id = newId;
 }
 
 bool Datagram::isForId(int id) {

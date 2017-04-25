@@ -10,6 +10,7 @@
 #define SYN 0x09
 #define ACK 0x10
 #define END_OF_CHAIN 0x11
+#define END_OF_DATAGRAM 0xFF
 
 // DATAGRAM DESTINATION CODES
 #define MASTER 0x01
