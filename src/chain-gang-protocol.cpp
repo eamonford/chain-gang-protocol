@@ -42,7 +42,7 @@ void CGP::sendDatagram(Datagram* datagram) {
     return;
 
   Stream* stream = this->streams[streamIndex];
-  for (int i = 0; i < 20; i++)
+  for (int i = 0; i < DATAGRAM_REPEATS; i++)
     writeDatagramToStream(stream, datagram);
 }
 
