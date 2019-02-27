@@ -42,6 +42,8 @@ void CGP::sendDatagram(Datagram* datagram) {
     return;
 
   Stream* stream = this->streams[streamIndex];
+  // Fire off the datagram many times. Since they will all have the same datagram ID,
+  // after one is successfully received all the rest will be discarded.
   for (int i = 0; i < DATAGRAM_REPEATS; i++)
     writeDatagramToStream(stream, datagram);
 }
@@ -50,7 +52,7 @@ Datagram* CGP::getDatagramOrEatJunk(Stream* stream, long timeout) {
   int* bytes;
   while (bytes = (int*)malloc(sizeof(int)*128)) {
     int numBytes = readUntil(128, bytes, stream, END_OF_DATAGRAM, timeout);
-    // if this happens, then the available data was a false alarm -- it was probably just noise, so return NULL
+    // If this happens, then the available data was a false alarm -- it was probably just noise, so return NULL
     if (numBytes == 0) {
       free(bytes);
       return NULL;
@@ -78,7 +80,7 @@ Datagram* CGP::getDatagramOnAnyStream(long timeout) {
         lastDatagramIds[i] = datagram->id;
         return datagram;
       }
-      // We had a false alarm so start the timer over
+      // We had a false alarm so restart the timer
       startTime = millis();
       delete datagram;
     }
