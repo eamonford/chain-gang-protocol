@@ -25,7 +25,8 @@ class CGPDelegate : public CGPDelegateInterface {
     lastDatagramReceived = datagram;
     if (datagram->command == SAY_HI) {
       // Do something to say hi!
-    }
+    } else {
+      // Process other commands 
   }
 
   int getStreamIndexForDatagram(Datagram* datagram) {
@@ -33,10 +34,7 @@ class CGPDelegate : public CGPDelegateInterface {
   }
 
   bool shouldForwardDatagram(Datagram* datagram) {
-    if (datagram->destination == EVERYONE)
-      return true;
-    else
-      return false;
+    return datagram->destination == EVERYONE;
   }
 };
 
